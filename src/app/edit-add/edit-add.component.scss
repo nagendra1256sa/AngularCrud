@@ -1,0 +1,22 @@
+.row{
+    display: flex;
+    gap: 10px;
+    mat-form-field{
+        width: 100%;
+    }
+}
+.content{
+    padding-top: 10px;
+}
+.main-body{
+    max-width: 1248px;
+    margin: 0 auto;
+    padding-top: 20px;
+    mat-form-field{
+        width: 100%;
+    }
+}
+.error{
+    color: red;
+    font-family: 'Times New Roman', Times, serif;
+}

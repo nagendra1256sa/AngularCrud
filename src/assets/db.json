@@ -1,0 +1,32 @@
+{
+  "employees": [
+    {
+      "firstName": "Pavan Kalyan",
+      "lastName": "Konidala",
+      "email": "pavan@gmail.com",
+      "dob": "2023-09-01T18:30:00.000Z",
+      "gender": "Male",
+      "education": "Under Graduate",
+      "company": "Ap Ts",
+      "experience": 10,
+      "package": 50,
+      "phoneNumbers": [
+        546535436
+      ],
+      "id": 1
+    },
+    {
+      "firstName": "Venkatesh",
+      "lastName": "D",
+      "email": "venkatesh@gmail.com",
+      "dob": "2023-10-04T18:30:00.000Z",
+      "gender": "Male",
+      "education": "Post Graduate",
+      "company": "Ramoji",
+      "experience": 5,
+      "package": 30,
+      "phoneNumbers": [],
+      "id": 2
+    }
+  ]
+}

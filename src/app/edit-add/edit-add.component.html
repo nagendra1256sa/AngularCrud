@@ -1,0 +1,114 @@
+<div mat-dialog-title>
+      Employee Form
+</div>
+<form [formGroup]="empForm" (ngSubmit)="onSubmit()">
+  <div mat-dialog-content class="content">
+    <div class="row">
+      <div> <mat-form-field appearance="outline">
+        <mat-label>FirstName</mat-label>
+        <input matInput placeholder="Ex. nagendra" formControlName="firstName" />
+        <mat-error *ngIf="empForm.controls['firstName'].touched && empForm.controls['firstName'].errors?.['required']">
+          First Name is required
+        </mat-error>
+      </mat-form-field>
+      
+      </div>
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>LastName</mat-label>
+          <input matInput placeholder="Ex. Gandham" formControlName="lastName">
+          <mat-error *ngIf="empForm.controls['lastName'].touched && empForm.controls['lastName'].errors?.['required']">
+            Last Name is required
+          </mat-error>
+        </mat-form-field>
+       
+      </div>
+    </div>
+       <div class="row">
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Ex.  abc@gmail.com" formControlName="email">
+            <mat-error *ngIf="empForm.controls['email'].touched && empForm.controls['email'].errors?.['required']">
+              email is required
+            </mat-error>
+        </mat-form-field>
+        </div>
+       <div>
+        <mat-form-field>
+          <mat-label>Dob</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="dob">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="empForm.get('dob')?.touched && empForm.controls['dob']?.hasError('required')">
+            Dob is required
+          </mat-error>
+        </mat-form-field>
+       </div>
+       </div>
+       <div class="row">
+        <mat-radio-group aria-label="Select an option" formControlName="gender">
+            <mat-label>Gender</mat-label>
+            <mat-radio-button value="Male">Male</mat-radio-button>
+            <mat-radio-button value="Female">Female</mat-radio-button>
+            <mat-radio-button value="Others">Others</mat-radio-button>
+            <mat-error *ngIf="empForm.get('gender')?.touched && empForm.get('gender')?.hasError('required')">
+              gender is required
+            </mat-error>
+          </mat-radio-group>          
+       </div>
+       <div class="row">
+        <mat-form-field appearance="outline">
+            <mat-label>Education</mat-label>
+            <mat-select formControlName="education">
+              <mat-option *ngFor="let val of education"[value]="val">{{val}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="empForm.controls['education'].touched && empForm.controls['education'].errors?.['required']">
+              education is required
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Company</mat-label>
+            <input matInput placeholder="Ex. LogiSoft" formControlName="company">
+            <mat-error *ngIf="empForm.controls['company'].touched && empForm.controls['company'].errors?.['required']">
+             company is required
+            </mat-error>
+          </mat-form-field>
+       </div>
+       <div class="row">
+        <mat-form-field appearance="outline" >
+            <mat-label>Experience</mat-label>
+            <input matInput placeholder="Ex. 2 years" type="number" formControlName="experience">
+            <mat-error *ngIf="empForm.controls['experience'].touched && empForm.controls['experience'].errors?.['required']">
+              experience is required
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Package</mat-label>
+            <input matInput placeholder="Ex. 200000" type="number" formControlName="package">
+            <mat-error *ngIf="empForm.controls['package'].touched && empForm.controls['package'].errors?.['required']">
+             package is required
+            </mat-error>
+        </mat-form-field>
+       </div>
+       <div class="row" *ngFor="let number of addPNumber;let i=index">
+        <div formArrayName="phoneNumbers">
+          <mat-form-field appearance="outline">
+            <mat-label>Phone number</mat-label>
+            <input matInput type="number" placeholder="Enter PhoneNumber" [formControlName]="i.toString()" >
+            <mat-error *ngIf="empForm.get('phoneNumbers')?.get(i.toString())?.touched && empForm.get('phoneNumbers')?.get(i.toString())?.hasError('required')">
+              phone number is required
+            </mat-error>
+          </mat-form-field> 
+        </div>
+        <button mat-raised-button type="button" color="warn" (click)="remove(i)" [disabled]="disableCancel()" >Remove</button>
+       </div>
+       <button mat-raised-button type="button" color="accent" (click)="addNumber()">Add PhoneNumber</button>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button type="button" mat-dialog-close>cancel</button>
+    <button mat-raised-button color="primary" type="submit">{{data? 'Update':'save'}}</button>
+</div>
+</form>
