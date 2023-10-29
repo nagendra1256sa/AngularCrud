@@ -10,7 +10,7 @@ export class ServiceService {
   constructor(private _http:HttpClient) { }
   addEmployee(data:any):Observable<any>
   {
-    return this._http.post("http://localhost:5000/employees",data,{
+    return this._http.post(" http://localhost:5000/items",data,{
       headers:{
         'contentType':"application/json"
       }
@@ -18,7 +18,7 @@ export class ServiceService {
   }
   UpdateEmployee(data:any,id:number):Observable<any>
   {
-    return this._http.put(`http://localhost:5000/employees/${id}`,data,{
+    return this._http.put(` http://localhost:5000/items/${id}`,data,{
       headers:{
         'contentType':"application/json"
       }
@@ -26,10 +26,10 @@ export class ServiceService {
   }
   getEmployyeList():Observable<any>
   {
-    return this._http.get("http://localhost:5000/employees");
+    return this._http.get(" http://localhost:5000/items");
   }
   deleteEmployee(id:number):Observable<any>
   {
-    return this._http.delete(`http://localhost:5000/employees/${id}`)
+    return this._http.delete(` http://localhost:5000/items/${id}`)
   }
 }
