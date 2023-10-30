@@ -1,7 +1,8 @@
-<div mat-dialog-title>
-      Employee Form
+
+<form [formGroup]="empForm" (ngSubmit)="onSubmit()" class="dialog_container">
+  <div mat-dialog-title>
+    Employee Form
 </div>
-<form [formGroup]="empForm" (ngSubmit)="onSubmit()">
   <div mat-dialog-content class="content">
     <div class="row">
        <mat-form-field appearance="outline">

@@ -5,7 +5,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { ServiceService } from '../service.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Route, Router } from '@angular/router';
+import { CardComponent } from '../card/card.component';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,10 +22,17 @@ export class DashboardComponent  implements OnInit{
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private _matDialog:MatDialog, private _empService:ServiceService, private _route:Router)
+  constructor(private _matDialog:MatDialog, private _empService:ServiceService, private _route:Router,private _router:ActivatedRoute)
   { }
   ngOnInit(): void {
     this.getEmployeeList();
+    this._route.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(()=>
+    {
+      if(this._router.snapshot.routeConfig?.path==="dashboard")
+      {
+         this.getEmployeeList()
+      }
+    })
   }
   getEmployeeList(): void {
     this._empService.getEmployyeList().subscribe({
@@ -51,17 +60,18 @@ export class DashboardComponent  implements OnInit{
   }
   openAddEditForm()
   {
-    this._route.navigate(['/','add'])
-    const dialogRef=this._matDialog.open(EditAddComponent)
-    dialogRef.afterClosed().subscribe({
-      next:(val)=>
-      {
-        if(val)
-        {
-          this.getEmployeeList();
-        }
-      }
-    })
+   
+    // const dialogRef=this._matDialog.open(EditAddComponent)
+    // dialogRef.afterClosed().subscribe({
+    //   next:(val)=>
+    //   {
+    //     if(val)
+    //     {
+    //       this.getEmployeeList();
+    //     }
+    //   }
+    // })
+    this._route.navigate(['dashboard/add'])
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -71,22 +81,26 @@ export class DashboardComponent  implements OnInit{
       this.dataSource.paginator.firstPage();
     }
   }
-  openEditForm(data:any)
+  openEditForm(id:number)
   {
     
-    const dialogRef=this._matDialog.open(EditAddComponent,{
-      data,
-    })
-    dialogRef.afterClosed().subscribe({
-      next:(val)=>
-      {
-        if(val)
-        {
-          this.getEmployeeList();
-        }
-      }
-    })
+    // const dialogRef=this._matDialog.open(EditAddComponent,{
+    //   data,
+    // })
+    // dialogRef.afterClosed().subscribe({
+    //   next:(val)=>
+    //   {
+    //     if(val)
+    //     {
+    //       this.getEmployeeList();
+    //     }
+    //   }
+    // })
+    this._route.navigate([`/dashboard/edit/${id}`])
   }
-  
+  openDialog(id:number)
+  {
+      this._route.navigate([`dashboard/card/${id}`])
+  }
 
 }

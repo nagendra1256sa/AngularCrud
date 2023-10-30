@@ -20,11 +20,14 @@ import {MatTableModule} from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { CardComponent } from './card/card.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
 @NgModule({
   declarations: [
     AppComponent,
     EditAddComponent,
-    DashboardComponent
+    DashboardComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +47,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
    HttpClientModule,
    MatTableModule,
    MatPaginatorModule,
-   MatSortModule
+   MatSortModule,
+   MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]

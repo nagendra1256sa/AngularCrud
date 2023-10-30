@@ -8,6 +8,15 @@
       "BasePrice": "100",
       "Description": "Quality Good",
       "id": 1
+    },
+    {
+      "Sku": "2",
+      "Name": "Mutton",
+      "DisplayName": "Fry",
+      "SellingPrice": "200",
+      "BasePrice": 170,
+      "Description": "",
+      "id": 2
     }
   ]
 }

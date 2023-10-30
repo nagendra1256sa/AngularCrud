@@ -32,4 +32,8 @@ export class ServiceService {
   {
     return this._http.delete(` http://localhost:5000/items/${id}`)
   }
+  getEmployyeListById(id:number):Observable<any>
+  {
+    return this._http.get(`http://localhost:5000/items/${id}`);
+  }
 }

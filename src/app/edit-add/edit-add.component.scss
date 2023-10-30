@@ -21,3 +21,13 @@
     color: red;
     font-family: 'Times New Roman', Times, serif;
 }
+.dialog_container{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
