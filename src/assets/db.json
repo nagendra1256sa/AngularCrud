@@ -4,8 +4,8 @@
       "Sku": "1",
       "Name": "Chicken",
       "DisplayName": "Lolli Pop",
-      "SellingPrice": "130",
-      "BasePrice": "100",
+      "SellingPrice": "120",
+      "BasePrice": 100,
       "Description": "Quality Good",
       "id": 1
     },
@@ -18,5 +18,47 @@
       "Description": "",
       "id": 2
     }
-  ]
+  ],
+  "Users": [
+    {
+      "Name": "Pavan ",
+      "LastName": "K",
+      "Email": "pavan@gmail.com",
+      "DOB": "2023-10-03T18:30:00.000Z",
+      "Gender": "Male",
+      "Education": "Intermidate",
+      "Company": "Wipro",
+      "PhoneNumber": [
+        "6535434558"
+      ],
+      "id": 1
+    },
+    {
+      "Name": "Tej",
+      "LastName": "G",
+      "Email": "tej@gmail.com",
+      "DOB": "2023-10-31T18:30:00.000Z",
+      "Gender": "Male",
+      "Education": "Intermidate",
+      "Company": "LogiSoft",
+      "PhoneNumber": [
+        "7996547655"
+      ],
+      "id": 2
+    },
+    {
+      "Name": "Venkatesh",
+      "LastName": "D",
+      "Email": "venkatesh@gmail.com",
+      "DOB": "2023-11-05T18:30:00.000Z",
+      "Gender": "Male",
+      "Education": "Intermidate",
+      "Company": "Google",
+      "PhoneNumber": [
+        "7655656656"
+      ],
+      "id": 3
+    }
+  ],
+  "login": []
 }

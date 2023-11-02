@@ -1,0 +1,98 @@
+<form [formGroup]="userForm" class="dialog_container" (ngSubmit)="onSubmit()">
+  <div mat-dialog-title>
+       <h2>User form</h2>
+  </div>
+  <div mat-dialog-content class="content">
+    <div class="row">
+      <div>
+       <mat-form-field appearance="outline">
+           <mat-label>Name</mat-label>
+           <input matInput placeholder="Enter name" formControlName="Name">
+           <mat-error *ngIf="userForm.controls['Name'].touched && userForm.controls['Name'].errors?.['required']">Name required</mat-error>
+       </mat-form-field>
+      </div>
+      <div>
+       <mat-form-field appearance="outline">
+           <mat-label>LastName</mat-label>
+           <input matInput  placeholder="Enter name" formControlName="LastName">
+           <mat-error *ngIf="userForm.controls['LastName'].touched && userForm.controls['LastName'].errors?.['required']">Last name required</mat-error>
+       </mat-form-field>
+      </div>
+ </div>
+ <div class="row">
+      <div>
+       <mat-form-field appearance="outline">
+         <mat-label>Email</mat-label>
+         <input matInput placeholder="abc&gmail.com" formControlName="Email">
+         <mat-error *ngIf="userForm.controls['Email'].touched && userForm.controls['Email'].errors?.['required']">Email required</mat-error>
+       </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Dob</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="DOB" >
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="userForm.get('DOB')?.touched && userForm.controls['DOB']?.hasError('required')">
+            Dob is required
+          </mat-error>
+        </mat-form-field>
+       </div>
+ </div>
+ <div class="row">
+   <div>
+     <mat-radio-group aria-label="select option" formControlName="Gender">
+       <mat-label>Gender</mat-label>
+        <mat-radio-button value="Male">Male</mat-radio-button>
+        <mat-radio-button value="Female">Female</mat-radio-button>
+        <mat-radio-button value="Others"></mat-radio-button>
+     </mat-radio-group>
+    </div>
+ </div>
+ <div class="row">
+        <div>
+          <!-- <mat-form-field appearance="outline">
+            <mat-label>Education</mat-label>
+            <input matInput placeholder="abc&gmail.com" formControlName="Education">
+            <mat-error *ngIf="userForm.controls['Education'].touched && userForm.controls['Education'].errors?.['required']">Education required</mat-error>
+          </mat-form-field>
+         </div> -->
+         <mat-form-field appearance="outline">
+          <mat-label>Eduaction</mat-label>
+          <mat-select formControlName="Education">
+            <mat-option *ngFor="let study of Education" [value]="study.value">
+              {{study.viewValue}}
+            </mat-option>
+            <mat-error *ngIf="userForm.controls['Education'].touched && userForm.controls['Education'].errors?.['required']">
+              Education required
+            </mat-error>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Comapny</mat-label>
+          <input matInput placeholder="LogiSoft" formControlName="Company">
+          <mat-error *ngIf="userForm.controls['Company'].touched && userForm.controls['Company'].errors?.['required']">Company required</mat-error>
+        </mat-form-field>
+      </div>
+ </div>
+ <div class="row" *ngFor="let number of PhoneControls.controls;let i=index">
+  <div formArrayName="PhoneNumber">
+    <mat-form-field appearance="outline">
+      <mat-label>Phone number</mat-label>
+      <input matInput placeholder="67658848754" [formControlName]="i">
+      <mat-error *ngIf="PhoneControls.controls[i].touched && PhoneControls.controls[i].errors?.['required']">phone number is required</mat-error>
+      <mat-error *ngIf="PhoneControls.controls[i].touched && PhoneControls.controls[i].errors?.['pattern']">Starting zero is not allowed</mat-error>
+    </mat-form-field>
+  </div>
+  <button mat-raised-button type="button" color="warn" (click)="deleteField(i)" [disabled]="disableButton()"><mat-icon class="mat-18" disabled="">delete</mat-icon></button>
+ </div>
+ <button mat-raised-button color="warn" type="button" (click)="addNumber()">Add number</button>
+ <div mat-dialog-actions class="actions">
+   <button mat-raised-button routerLink="/dashboard/users">cancel</button>
+   <button mat-raised-button color="primary" type="submit" [disabled]="data ? !checkDirty():!userForm.valid">{{data ? 'Update': 'Submit'}}</button>
+ </div>
+  </div>
+</form>

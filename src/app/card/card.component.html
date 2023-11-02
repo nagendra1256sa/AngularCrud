@@ -1,13 +1,12 @@
 <div class="container">
-    <h1>Employee Details</h1>
+    <h2>Employee Details</h2>
     <div class="content">
-        <h4><span class="data">Name</span>:{{data.Sku}}</h4>
-        <h4><span class="data">Last Name</span>:{{data.Name}}</h4>
-        <h4><span class="data">Email</span>:{{data.DisplayName}}</h4>
-        <h4><span class="data">Dob</span>:{{data.SellingPrice}}</h4>
-        <h4><span class="data">Education</span>:{{data.BasePrice}}</h4>
-        <h4><span class="data">Company</span>:{{data.Description   }}</h4>
-
+        <span class="data">Sku</span>:{{data?.Sku}}
+        <h4><span class="data">Name</span>:{{data?.Name}}</h4>
+        <h4><span class="data">DisplayName</span>:{{data?.DisplayName}}</h4>
+        <h4><span class="data">SellingPrice</span>:{{data?.SellingPrice}}</h4>
+        <h4><span class="data">BasePrice</span>:{{data?.BasePrice}}</h4>
+        <h4><span class="data">description</span>:{{data?.Description   }}</h4>
     </div>
-    <button mat-raised-button color="primary" routerLink="/dashboard">Back</button>
+    <button mat-raised-button color="primary" routerLink="/dashboard/items">Back</button>
 </div>

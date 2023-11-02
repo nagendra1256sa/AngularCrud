@@ -22,12 +22,28 @@ import { MatSortModule } from '@angular/material/sort';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CardComponent } from './card/card.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { ItemsComponent } from './items/items.component';
+import { UsersComponent } from './users/users.component';
+import { UserFormComponent } from './user-form/user-form.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { LoginComponent } from './login/login.component';
+import {MatCardModule} from '@angular/material/card';
+import { UserCardComponent } from './user-card/user-card.component';
+import {MatListModule} from '@angular/material/list';
+import { ErrorComponent } from './error/error.component';
 @NgModule({
   declarations: [
     AppComponent,
     EditAddComponent,
     DashboardComponent,
-    CardComponent
+    CardComponent,
+    ItemsComponent,
+    UsersComponent,
+    UserFormComponent,
+    LoginComponent,
+    UserCardComponent,
+    ErrorComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -48,7 +64,10 @@ import {MatSidenavModule} from '@angular/material/sidenav';
    MatTableModule,
    MatPaginatorModule,
    MatSortModule,
-   MatSidenavModule
+   MatSidenavModule,
+   MatMenuModule,
+   MatCardModule,
+   MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

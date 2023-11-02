@@ -1,24 +1,15 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ServiceService } from '../service.service';
 
-interface DetailsType{
-  Sku:string;
-  Name:string;
-  DisplayName:string;
-  BasePrice:string;
-  SellingPrice:string;
-  Description:string
-}
-
 @Component({
-  selector: 'app-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.scss']
+  selector: 'app-user-card',
+  templateUrl: './user-card.component.html',
+  styleUrls: ['./user-card.component.scss']
 })
-export class CardComponent implements OnInit{
-  data:DetailsType|undefined
+export class UserCardComponent implements OnInit {
+  data:any 
+
   routeSubscription: any;
     constructor(private _Activated:ActivatedRoute,private getDataById:ServiceService,private _router:Router){}
   ngOnInit(): void {
@@ -28,16 +19,16 @@ export class CardComponent implements OnInit{
     // });
      const ItemId=this._Activated.snapshot.paramMap.get('id');
      const id=ItemId? parseInt(ItemId):NaN;
-     this.getDataById.getItemListById(id).subscribe({
+     this.getDataById.getUserListById(id).subscribe({
       next:(val)=>
       {
         this.data=val
+        
       },error:()=>
       {
         alert('Not Found')
-        this._router.navigate(['dashboard/items'])
+        this._router.navigate(['dashboard/users'])
       }
      })
-  }
-
+}
 }

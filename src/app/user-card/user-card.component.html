@@ -1,0 +1,18 @@
+<div class="container">
+  <h2>Employee Details</h2>
+  <div class="content">
+    <div><span class="data">Name</span>:{{ data?.Name }}</div>
+    <div><span class="data">LastName</span>:{{ data?.LastName }}</div>
+    <div><span class="data">DOB</span>:{{ data?.DOB }}</div>
+    <div><span class="data">Email</span>:{{ data?.Email }}</div>
+    <div><span class="data">Gender</span>:{{ data?.Gender }}</div>
+    <div><span class="data">Education</span>:{{ data?.Education }}</div>
+    <div><span class="data">Company</span>:{{ data?.Company }}</div>
+    <div *ngFor="let user of data?.PhoneNumber;let i=index">
+        <span class="data">PhoneNumber {{i+1}}</span>:{{ user }}   
+    </div>
+  </div>
+  <button mat-raised-button color="primary" routerLink="/dashboard/users">
+    Back
+  </button>
+</div>

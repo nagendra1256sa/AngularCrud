@@ -7,16 +7,19 @@
     <div class="row">
        <mat-form-field appearance="outline">
         <mat-label>Sku</mat-label>
-        <input matInput placeholder="Ex. nagendra" formControlName="Sku" />
+        <input matInput placeholder="Ex. 1" formControlName="Sku" />
         <mat-error *ngIf="empForm.controls['Sku'].touched && empForm.controls['Sku'].errors?.['required']">
           Sku is required
+        </mat-error>
+        <mat-error *ngIf="empForm.controls['Sku'].touched && empForm.controls['Sku'].errors?.['pattern']">
+          Inavlid Input
         </mat-error>
       </mat-form-field>
     </div>
     <div class="row">
       <mat-form-field appearance="outline">
         <mat-label>Name</mat-label>
-        <input matInput placeholder="Ex. Gandham" formControlName="Name">
+        <input matInput placeholder="Ex. chicken" formControlName="Name">
         <mat-error *ngIf="empForm.controls['Name'].touched && empForm.controls['Name'].errors?.['required']">
           Name is required
         </mat-error>
@@ -25,7 +28,7 @@
        <div class="row">
           <mat-form-field appearance="outline">
             <mat-label>DisplayName</mat-label>
-            <input matInput placeholder="Ex.  abc@gmail.com" formControlName="DisplayName">
+            <input matInput placeholder="Ex.  Lalipop" formControlName="DisplayName">
             <mat-error *ngIf="empForm.controls['DisplayName'].touched && empForm.controls['DisplayName'].errors?.['required']">
               DisplayName is required
             </mat-error>
@@ -34,18 +37,24 @@
        <div class="row">
           <mat-form-field appearance="outline">
             <mat-label>SellingPrice</mat-label>
-            <input matInput placeholder="Ex. LogiSoft" formControlName="SellingPrice">
+            <input matInput placeholder="Ex. 100" formControlName="SellingPrice">
             <mat-error *ngIf="empForm.controls['SellingPrice'].touched && empForm.controls['SellingPrice'].errors?.['required']">
              SellingPrice is required
             </mat-error>
+            <mat-error *ngIf="empForm.controls['SellingPrice'].touched && empForm.controls['SellingPrice'].errors?.['pattern']">
+              Inavalid Price
+             </mat-error>
           </mat-form-field>
        </div>
        <div class="row">
         <mat-form-field appearance="outline" >
             <mat-label>BasePrice</mat-label>
-            <input matInput placeholder="Ex. 2 years" type="number" formControlName="BasePrice">
+            <input matInput placeholder="Ex. 70" type="number" formControlName="BasePrice">
             <mat-error *ngIf="empForm.controls['BasePrice'].touched && empForm.controls['BasePrice'].errors?.['required']">
               BasePrice is required
+            </mat-error>
+            <mat-error *ngIf="empForm.controls['BasePrice'].touched && empForm.controls['BasePrice'].errors?.['pattern']">
+              Inavlid price
             </mat-error>
         </mat-form-field>
       </div>
@@ -69,8 +78,8 @@
        </div>
        <button mat-raised-button type="button" color="accent" (click)="addNumber()">Add PhoneNumber</button> -->
 </div>
-<div mat-dialog-actions>
-    <button mat-raised-button type="button"  routerLink="/dashboard">cancel</button>
-    <button mat-raised-button color="primary" type="submit">{{data? 'Update':'save'}}</button>
+<div mat-dialog-actions class="actions">
+    <button mat-raised-button type="button"  routerLink="/dashboard/items">cancel</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="data ? !checkDirty(): !empForm.valid">{{data? 'Update':'save'}}</button>
 </div>
 </form>

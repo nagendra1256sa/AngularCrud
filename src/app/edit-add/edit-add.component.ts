@@ -7,15 +7,26 @@ import {
   Validators,
 } from '@angular/forms';
 import { ServiceService } from '../service.service';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+// import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+
+export interface EditDetailsType{
+  id:number
+  Sku:string;
+  Name:string;
+  DisplayName:string;
+  BasePrice:string;
+  SellingPrice:string;
+  Description:string
+}
+
 @Component({
   selector: 'app-edit-add',
   templateUrl: './edit-add.component.html',
   styleUrls: ['./edit-add.component.scss'],
 })
 export class EditAddComponent implements OnInit {
-  data: any;
+  data: EditDetailsType|undefined;
   empForm: FormGroup;
   constructor(
     private _fb: FormBuilder,
@@ -24,11 +35,11 @@ export class EditAddComponent implements OnInit {
   // @Inject(MAT_DIALOG_DATA) public data:any
   {
     this.empForm = this._fb.group({
-      Sku: new FormControl('', [Validators.required]),
+      Sku: new FormControl('', [Validators.required,Validators.pattern(/^[a-zA-Z0-9][a-zA-Z0-9\s!@#$%^&*()-_+=\[\]{};:'",.<>\/?]*$/)]),
       Name: new FormControl('', [Validators.required]),
-      DisplayName: new FormControl('', [Validators.required]),
-      SellingPrice: new FormControl('', [Validators.required]),
-      BasePrice: new FormControl('', [Validators.required]),
+      DisplayName: new FormControl('', [Validators.required,]),
+      SellingPrice: new FormControl('', [Validators.required,Validators.pattern(/^[0-9]*$/)]),
+      BasePrice: new FormControl('', [Validators.required,Validators.pattern(/^[0-9]*$/)]),
       Description: new FormControl('', []),
     });
   }
@@ -37,7 +48,7 @@ export class EditAddComponent implements OnInit {
     const id = ItemId ? parseInt(ItemId) : NaN;
 
     if (id) {
-      this._employeSerbice.getEmployyeListById(id).subscribe({
+      this._employeSerbice.getItemListById(id).subscribe({
         next: (res) => {
           this.data=res;
           if (this.data) {
@@ -48,7 +59,11 @@ export class EditAddComponent implements OnInit {
             this.empForm.get('BasePrice')?.setValue(this.data.BasePrice);
             this.empForm.get('Description')?.setValue(this.data.Description);
           }
-        },
+        },error:()=>
+        {
+          alert("Not Found")
+          this._Router.navigate(['dashboard/items'])
+        }
       });
     }
   }
@@ -56,11 +71,11 @@ export class EditAddComponent implements OnInit {
     if (this.data) {
       if (this.empForm.valid) {
         this._employeSerbice
-          .UpdateEmployee(this.empForm.value, this.data.id)
+          .UpdateItem(this.empForm.value, this.data.id)
           .subscribe({
             next: (val: any) => {
               // this._dialogRef.close(true);
-              this._Router.navigate(['/dashboard'])
+              this._Router.navigate(['/dashboard/items'])
             },
             error: (err: any) => {
               console.log(err);
@@ -69,7 +84,7 @@ export class EditAddComponent implements OnInit {
       }
     } else {
       if (this.empForm.valid) {
-        this._employeSerbice.addEmployee(this.empForm.value).subscribe({
+        this._employeSerbice.addItem(this.empForm.value).subscribe({
           next: (val: any) => {
             alert('data is added');
             // this._dialogRef.close(true);
@@ -97,5 +112,9 @@ export class EditAddComponent implements OnInit {
   }
   disableCancel() {
     return this.addPNumber.length === 1 ? true : false;
+  }
+  checkDirty()
+  {
+     return this.data&&this.empForm.dirty
   }
 }
