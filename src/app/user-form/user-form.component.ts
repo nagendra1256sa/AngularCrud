@@ -44,7 +44,7 @@ export class UserFormComponent implements OnInit {
          Gender: new FormControl('',[Validators.required]),
          Education: new FormControl('',[Validators.required]),
          Company:new FormControl('',[Validators.required]),
-         PhoneNumber: new FormArray([new FormControl('',[Validators.required,Validators.pattern(/^[5-9]\d{9}$/)])]),
+         PhoneNumber: new FormArray([new FormControl('',[Validators.required,Validators.pattern(/^[1-9]\d{9}$/)])]),
        })
   }
   ngOnInit(): void {
@@ -69,7 +69,7 @@ export class UserFormComponent implements OnInit {
              myArray.clear();
              for(const Number of this.data.PhoneNumber)
              {
-               myArray.push(new FormControl(Number,[Validators.required,Validators.pattern(/^[^0]{10}/)]))
+               myArray.push(new FormControl(Number,[Validators.required,Validators.pattern(/^[1-9]\d{9}$/)]))
              }
            }
          },error:(err)=>

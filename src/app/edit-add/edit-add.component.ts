@@ -35,18 +35,17 @@ export class EditAddComponent implements OnInit {
   // @Inject(MAT_DIALOG_DATA) public data:any
   {
     this.empForm = this._fb.group({
-      Sku: new FormControl('', [Validators.required,Validators.pattern(/^[a-zA-Z0-9][a-zA-Z0-9\s!@#$%^&*()-_+=\[\]{};:'",.<>\/?]*$/)]),
+      Sku: new FormControl('', [Validators.required,Validators.pattern(/^[a-zA-Z1-9][a-zA-Z0-9\s!@#$%^&*()-_+=\[\]{};:'",.<>\/?]*$/)]),
       Name: new FormControl('', [Validators.required]),
       DisplayName: new FormControl('', [Validators.required,]),
-      SellingPrice: new FormControl('', [Validators.required,Validators.pattern(/^[0-9]*$/)]),
-      BasePrice: new FormControl('', [Validators.required,Validators.pattern(/^[0-9]*$/)]),
+      SellingPrice: new FormControl('', [Validators.required,Validators.pattern(/^[1-9][0-9]*$/)]),
+      BasePrice: new FormControl('', [Validators.required,Validators.pattern(/^[1-9][0-9]*$/)]),
       Description: new FormControl('', []),
     });
   }
   ngOnInit(): void {
     const ItemId = this._ActiveRoute.snapshot.paramMap.get('id');
     const id = ItemId ? parseInt(ItemId) : NaN;
-
     if (id) {
       this._employeSerbice.getItemListById(id).subscribe({
         next: (res) => {
@@ -88,7 +87,7 @@ export class EditAddComponent implements OnInit {
           next: (val: any) => {
             alert('data is added');
             // this._dialogRef.close(true);
-            this._Router.navigate(['/dashboard'])
+            this._Router.navigate(['/dashboard/items'])
           },
           error: (err: any) => {
             console.log(err);

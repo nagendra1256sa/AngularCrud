@@ -30,7 +30,6 @@ import { LoginComponent } from './login/login.component';
 import {MatCardModule} from '@angular/material/card';
 import { UserCardComponent } from './user-card/user-card.component';
 import {MatListModule} from '@angular/material/list';
-import { ErrorComponent } from './error/error.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +41,6 @@ import { ErrorComponent } from './error/error.component';
     UserFormComponent,
     LoginComponent,
     UserCardComponent,
-    ErrorComponent,
     
   ],
   imports: [

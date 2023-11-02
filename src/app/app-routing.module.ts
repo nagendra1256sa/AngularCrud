@@ -9,7 +9,6 @@ import { UserFormComponent } from './user-form/user-form.component';
 import { LoginComponent } from './login/login.component';
 import { authGuard } from './gaurd/auth.guard';
 import { UserCardComponent } from './user-card/user-card.component';
-import { ErrorComponent } from './error/error.component';
 
 const routes: Routes = [
   {

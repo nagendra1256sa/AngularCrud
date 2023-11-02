@@ -82,9 +82,9 @@
   <div formArrayName="PhoneNumber">
     <mat-form-field appearance="outline">
       <mat-label>Phone number</mat-label>
-      <input matInput placeholder="67658848754" [formControlName]="i">
+      <input matInput type="number" placeholder="67658848754" [formControlName]="i">
       <mat-error *ngIf="PhoneControls.controls[i].touched && PhoneControls.controls[i].errors?.['required']">phone number is required</mat-error>
-      <mat-error *ngIf="PhoneControls.controls[i].touched && PhoneControls.controls[i].errors?.['pattern']">Starting zero is not allowed</mat-error>
+      <mat-error *ngIf="PhoneControls.controls[i].touched && PhoneControls.controls[i].errors?.['pattern']">Starting zero is not allowed and phone number should be 10 numbers</mat-error>
     </mat-form-field>
   </div>
   <button mat-raised-button type="button" color="warn" (click)="deleteField(i)" [disabled]="disableButton()"><mat-icon class="mat-18" disabled="">delete</mat-icon></button>
