@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { ServiceService } from '../service.service';
+import { Service, } from '../service.service';
 import { filter } from 'rxjs';
 
 @Component({
@@ -16,13 +16,13 @@ export class UsersComponent implements OnInit{
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!:MatSort
   displayedColumns:string[]=['id','Name','LastName','DOB','PhoneNumber','Actions']
-  constructor(private _router:Router,private _service:ServiceService,private _Aroute:ActivatedRoute){}
+  constructor(private _router:Router,private _userService:Service,private _Aroute:ActivatedRoute){}
   ngOnInit(): void {
-    this.getUserDetails();
+    this.getUserData();
     this._router.events.pipe(filter(event=> event instanceof NavigationEnd)).subscribe(()=>{
       if(this._Aroute.snapshot.routeConfig?.path==='users')
       {
-         this.getUserDetails()
+         this.getUserData()
       }
     })
   }
@@ -31,7 +31,7 @@ export class UsersComponent implements OnInit{
       const filterValue= (event.target as HTMLInputElement).value
       this.dataSource.filter= filterValue.trim().toLowerCase()
    }
-   openAddEditForm()
+   openAddForm()
    {
      this._router.navigate(['/dashboard/users/add'])
    }
@@ -39,9 +39,9 @@ export class UsersComponent implements OnInit{
    {
      this._router.navigate([`/dashboard/users/edit/${id}`])
    }
-   getUserDetails()
+   getUserData()
    {
-     this._service.getUserList().subscribe({
+     this._userService.getUserList().subscribe({
        next:(val)=>
        {
          this.dataSource=new MatTableDataSource(val);
@@ -52,15 +52,15 @@ export class UsersComponent implements OnInit{
    }
    deleteUser(id:number)
    {
-     this._service.deleteUser(id).subscribe({
+     this._userService.deleteUser(id).subscribe({
       next:()=>
       {
          alert("User successfully deleted")  
-         this.getUserDetails();
+         this.getUserData();
       }
      })
    }
-   details(id:number)
+   userDetails(id:number)
    {
       this._router.navigate([`/dashboard/users/card/${id}`])
    }

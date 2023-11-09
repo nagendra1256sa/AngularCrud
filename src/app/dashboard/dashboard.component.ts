@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';;
 import { MatDialog } from '@angular/material/dialog';
-import { ServiceService } from '../service.service';
+import { Service} from '../service.service';
 import { ActivatedRoute, NavigationEnd, Route, Router } from '@angular/router';
+import { ChangePasswordComponent } from '../change-password/change-password.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +10,7 @@ import { ActivatedRoute, NavigationEnd, Route, Router } from '@angular/router';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent  {
-  constructor(private _matDialog:MatDialog, private _empService:ServiceService, private _route:Router,private _router:ActivatedRoute)
+  constructor(private _matDialog:MatDialog, private _route:Router)
   { }
   openItems()
   {
@@ -23,5 +24,9 @@ export class DashboardComponent  {
   {
      localStorage.clear();
      this._route.navigate(['login'])
+  }
+  changePassword()
+  {
+     this._matDialog.open(ChangePasswordComponent)
   }
 }

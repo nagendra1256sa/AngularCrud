@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ServiceService } from '../service.service';
+import { Service } from '../service.service';
 
 interface EducationType {
   value: string;
@@ -24,7 +24,7 @@ export interface UserEditDetailsType{
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.scss']
 })
-export class UserFormComponent implements OnInit {
+export class UserAddEditComponent implements OnInit {
   userForm!:FormGroup
   data:UserEditDetailsType|undefined
   Education : EducationType[]=[
@@ -34,7 +34,7 @@ export class UserFormComponent implements OnInit {
     {value:'UG', viewValue:'UG'},
 
   ]
-  constructor(private _fb:FormBuilder,private _router:Router,private _service:ServiceService,private ActiveRoute:ActivatedRoute)
+  constructor(private _fb:FormBuilder,private _NRouter:Router,private _userService:Service,private ActiveRoute:ActivatedRoute)
   {
        this.userForm=this._fb.group({
          Name: new FormControl('',[Validators.required]),
@@ -52,7 +52,7 @@ export class UserFormComponent implements OnInit {
     const id= UId ? parseInt(UId):NaN;
     if(id)
     {
-       this._service.getUserListById(id).subscribe({
+       this._userService.getUserListById(id).subscribe({
          next:(val)=>
          {
            this.data=val;
@@ -75,7 +75,7 @@ export class UserFormComponent implements OnInit {
          },error:(err)=>
          {
            alert('Not Found')
-           this._router.navigate(['dashboard/users'])
+           this._NRouter.navigate(['dashboard/users'])
          }
        })
     }
@@ -86,10 +86,10 @@ export class UserFormComponent implements OnInit {
       {
          if(this.userForm.valid)
          {
-           this._service.UpdateUser(this.userForm.value,this.data.id).subscribe({
+           this._userService.UpdateUser(this.userForm.value,this.data.id).subscribe({
              next:(val)=>
              {
-               this._router.navigate(['/dashboard/users'])
+               this._NRouter.navigate(['/dashboard/users'])
              },
              error:(err)=>
              {
@@ -101,10 +101,10 @@ export class UserFormComponent implements OnInit {
       else{
          if(this.userForm.valid)
          {
-           this._service.addUsers(this.userForm.value).subscribe({
+           this._userService.addUsers(this.userForm.value).subscribe({
             next:(val)=>{
               alert('data added successfully' )
-              this._router.navigate(['dashboard/users'])
+              this._NRouter.navigate(['dashboard/users'])
             }
            })
          }

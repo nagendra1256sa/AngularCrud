@@ -6,7 +6,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { ServiceService } from '../service.service';
+import { Service } from '../service.service';
 // import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -30,8 +30,8 @@ export class EditAddComponent implements OnInit {
   empForm: FormGroup;
   constructor(
     private _fb: FormBuilder,
-    private _employeSerbice: ServiceService,
-    private _ActiveRoute: ActivatedRoute , private _Router:Router ) // private _dialogRef:MatDialogRef<EditAddComponent>,
+    private _employeSerbice: Service,
+    private _ActiveRoute: ActivatedRoute , private _NRouter:Router ) // private _dialogRef:MatDialogRef<EditAddComponent>,
   // @Inject(MAT_DIALOG_DATA) public data:any
   {
     this.empForm = this._fb.group({
@@ -61,7 +61,7 @@ export class EditAddComponent implements OnInit {
         },error:()=>
         {
           alert("Not Found")
-          this._Router.navigate(['dashboard/items'])
+          this._NRouter.navigate(['dashboard/items'])
         }
       });
     }
@@ -74,7 +74,7 @@ export class EditAddComponent implements OnInit {
           .subscribe({
             next: (val: any) => {
               // this._dialogRef.close(true);
-              this._Router.navigate(['/dashboard/items'])
+              this._NRouter.navigate(['/dashboard/items'])
             },
             error: (err: any) => {
               console.log(err);
@@ -87,7 +87,7 @@ export class EditAddComponent implements OnInit {
           next: (val: any) => {
             alert('data is added');
             // this._dialogRef.close(true);
-            this._Router.navigate(['/dashboard/items'])
+            this._NRouter.navigate(['/dashboard/items'])
           },
           error: (err: any) => {
             console.log(err);
@@ -96,22 +96,22 @@ export class EditAddComponent implements OnInit {
       }
     }
   }
-  addNumber() {
-    const control = new FormControl('', Validators.required);
-    (this.empForm.get('phoneNumbers') as FormArray).push(control);
-  }
-  get addPNumber() {
-    return (this.empForm.get('phoneNumbers') as FormArray).value;
-  }
-  remove(index: number) {
-    const myArray = this.empForm.get('phoneNumbers') as FormArray;
-    if (myArray && myArray.length > index) {
-      myArray.removeAt(index);
-    }
-  }
-  disableCancel() {
-    return this.addPNumber.length === 1 ? true : false;
-  }
+  // addNumber() {
+  //   const control = new FormControl('', Validators.required);
+  //   (this.empForm.get('phoneNumbers') as FormArray).push(control);
+  // }
+  // get addPNumber() {
+  //   return (this.empForm.get('phoneNumbers') as FormArray).value;
+  // }
+  // remove(index: number) {
+  //   const myArray = this.empForm.get('phoneNumbers') as FormArray;
+  //   if (myArray && myArray.length > index) {
+  //     myArray.removeAt(index);
+  //   }
+  // }
+  // disableCancel() {
+  //   return this.addPNumber.length === 1 ;
+  // }
   checkDirty()
   {
      return this.data&&this.empForm.dirty

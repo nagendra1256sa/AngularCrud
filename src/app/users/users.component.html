@@ -62,7 +62,7 @@
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="details(row.id)"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="userDetails(row.id)"></tr>
 
       <tr class="mat-row" *matNoDataRow>
         <td class="mat-cell" colspan="4">
@@ -78,7 +78,7 @@
 </div>
 <ng-container>
   <div class="button_container">
-    <button mat-fab color="primary" class="addB" (click)="openAddEditForm()">
+    <button mat-fab color="primary" class="addB" (click)="openAddForm()">
       <mat-icon>add</mat-icon>
     </button>
   </div>

@@ -7,7 +7,7 @@ import { UserEditDetailsType } from './user-form/user-form.component';
 @Injectable({
   providedIn: 'root'
 })
-export class ServiceService {
+export class Service {
 
   constructor(private _http:HttpClient) { }
   //Items
@@ -67,5 +67,27 @@ export class ServiceService {
   getUserListById(id:number):Observable<any>
   {
     return this._http.get(`http://localhost:5000/Users/${id}`);
+  }
+  //login
+  getLoginDetails()
+  {
+     return this._http.get('http://localhost:4000/user')
+  }
+  postLoginDetails(data:any)
+  {
+    return this._http.post('http://localhost:4000/user',data,{
+      headers:{
+        'contentType':"application/json"
+      }
+    })
+  }
+  getLoginDetailsByName(data:any)
+  {
+    
+    return this._http.post('http://localhost:4000/user/name',data)
+  }
+  putDeatils(name:string,data:any):Observable<any>
+  {
+    return this._http.put(`http://localhost:4000/user/${name}/password`,data)
   }
 }

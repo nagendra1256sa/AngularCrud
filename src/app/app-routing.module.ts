@@ -5,14 +5,18 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CardComponent } from './card/card.component';
 import { ItemsComponent } from './items/items.component';
 import { UsersComponent } from './users/users.component';
-import { UserFormComponent } from './user-form/user-form.component';
+import { UserAddEditComponent } from './user-form/user-form.component';
 import { LoginComponent } from './login/login.component';
 import { authGuard } from './gaurd/auth.guard';
 import { UserCardComponent } from './user-card/user-card.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 const routes: Routes = [
   {
        path: 'login',component:LoginComponent
+  },
+  {
+       path:'signUp',component:SignUpComponent
   },
   {
      path:'dashboard',
@@ -39,10 +43,10 @@ const routes: Routes = [
         children:[
           {
             path:'add',
-            component:UserFormComponent
+            component:UserAddEditComponent
           },
           {
-            path:'edit/:id',component:UserFormComponent
+            path:'edit/:id',component:UserAddEditComponent
           },{
             path:'card/:id',component:UserCardComponent
           }

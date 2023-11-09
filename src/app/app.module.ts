@@ -24,12 +24,14 @@ import { CardComponent } from './card/card.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { ItemsComponent } from './items/items.component';
 import { UsersComponent } from './users/users.component';
-import { UserFormComponent } from './user-form/user-form.component';
+import { UserAddEditComponent } from './user-form/user-form.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { LoginComponent } from './login/login.component';
 import {MatCardModule} from '@angular/material/card';
 import { UserCardComponent } from './user-card/user-card.component';
 import {MatListModule} from '@angular/material/list';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,9 +40,11 @@ import {MatListModule} from '@angular/material/list';
     CardComponent,
     ItemsComponent,
     UsersComponent,
-    UserFormComponent,
+    UserAddEditComponent,
     LoginComponent,
     UserCardComponent,
+    SignUpComponent,
+    ChangePasswordComponent,
     
   ],
   imports: [

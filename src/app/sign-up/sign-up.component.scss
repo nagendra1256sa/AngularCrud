@@ -1,5 +1,5 @@
 
-  .mat-card {
+.mat-card {
     width: 400px;
     box-sizing: border-box;
     padding: 20px;
@@ -26,12 +26,3 @@
     align-items: center;
     min-height: 100vh;
   }
-  
-a:hover {
-  text-decoration: underline; 
-}
-a {
-  text-decoration: none; 
-  color: #007bff; 
-  cursor: pointer;
-}

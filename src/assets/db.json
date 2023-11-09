@@ -17,15 +17,6 @@
       "BasePrice": 170,
       "Description": "",
       "id": 2
-    },
-    {
-      "Sku": "5",
-      "Name": "chicken",
-      "DisplayName": "Lali pop",
-      "SellingPrice": "23",
-      "BasePrice": 10,
-      "Description": "",
-      "id": 3
     }
   ],
   "Users": [

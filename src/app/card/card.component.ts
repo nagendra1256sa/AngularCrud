@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ServiceService } from '../service.service';
+import { Service } from '../service.service';
 
 interface DetailsType{
   Sku:string;
@@ -20,7 +20,7 @@ interface DetailsType{
 export class CardComponent implements OnInit{
   data:DetailsType|undefined
   routeSubscription: any;
-    constructor(private _Activated:ActivatedRoute,private getDataById:ServiceService,private _router:Router){}
+    constructor(private _Activated:ActivatedRoute,private getDataById:Service,private _router:Router){}
   ngOnInit(): void {
     // this.routeSubscription = this._Activated.paramMap.subscribe(params => {
     //   const id = params.get('id');

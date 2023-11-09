@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ServiceService } from '../service.service';
+import { Service } from '../service.service';
 
 @Component({
   selector: 'app-user-card',
@@ -11,7 +11,7 @@ export class UserCardComponent implements OnInit {
   data:any 
 
   routeSubscription: any;
-    constructor(private _Activated:ActivatedRoute,private getDataById:ServiceService,private _router:Router){}
+    constructor(private _Activated:ActivatedRoute,private getDataById:Service,private _NRouter:Router){}
   ngOnInit(): void {
     // this.routeSubscription = this._Activated.paramMap.subscribe(params => {
     //   const id = params.get('id');
@@ -27,7 +27,7 @@ export class UserCardComponent implements OnInit {
       },error:()=>
       {
         alert('Not Found')
-        this._router.navigate(['dashboard/users'])
+        this._NRouter.navigate(['dashboard/users'])
       }
      })
 }

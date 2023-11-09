@@ -1,4 +1,4 @@
-<form [formGroup]="formGroup" class="loginwrap">
+<form [formGroup]="loginFormGroup" class="loginwrap">
 <mat-card class="mat-card" >
      <h1>Login</h1>
       <div>
@@ -7,7 +7,7 @@
             UserName
           </mat-label>
           <input matInput placeholder="Enter UserName"  formControlName="userName">
-          <mat-error *ngIf="formGroup.controls['userName'].touched && formGroup.controls['userName'].errors?.['required']">Username required</mat-error>
+          <mat-error *ngIf="loginFormGroup.controls['userName'].touched && loginFormGroup.controls['userName'].errors?.['required']">Username required</mat-error>
         </mat-form-field>
       </div>
       <div>
@@ -16,10 +16,12 @@
           Password
         </mat-label>
         <input matInput placeholder="Enter Password" formControlName="password">
-        <mat-error *ngIf="formGroup.controls['password'].touched && formGroup.controls['password'].errors?.['required']">password required</mat-error>
-        <mat-error *ngIf="formGroup.controls['password'].touched && formGroup.controls['password'].errors?.['pattern']">Password must have alphanumaric and special charcters </mat-error>
+        <mat-error *ngIf="loginFormGroup.controls['password'].touched && loginFormGroup.controls['password'].errors?.['required']">password required</mat-error>
+        <mat-error *ngIf="loginFormGroup.controls['password'].touched && loginFormGroup.controls['password'].errors?.['pattern']">Password must have alphanumaric and special charcters </mat-error>
       </mat-form-field>
       </div>
       <button mat-raised-button color="primary" (click)="login()">Login</button>
+      <mat-error *ngIf="loginCheck">UserNot Found please sign up</mat-error>
+      <a routerLink="/signUp">signUp</a>
   </mat-card>
 </form>
