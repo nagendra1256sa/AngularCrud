@@ -10,10 +10,10 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./change-password.component.scss']
 })
 export class ChangePasswordComponent implements OnInit{
-     loginData:any;
-     error!:boolean;
-     message:any = true;
-     changePasswordForm!:FormGroup
+     public loginData:any;
+     public error!:boolean;
+    public message:any = true;
+     public changePasswordForm!:FormGroup
      constructor(private _userService:Service,private _matDialog: MatDialog,private _matDialogRef:MatDialogRef<ChangePasswordComponent>)
      {}
 
@@ -63,7 +63,7 @@ export class ChangePasswordComponent implements OnInit{
         if(this.changePasswordForm.valid)
         {
            
-            this._userService.putDeatils(this.loginData.userName,this.changePasswordForm.value).subscribe({
+            this._userService.putLoginDeatils(this.loginData.userName,this.changePasswordForm.value).subscribe({
              next:(val)=>
              {
                 

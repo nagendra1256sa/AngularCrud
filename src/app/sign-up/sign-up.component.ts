@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Service } from '../service.service';
@@ -9,7 +9,7 @@ import { Service } from '../service.service';
   styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent{
-  formGroup!:FormGroup
+  public formGroup!:FormGroup
   constructor(private _fb:FormBuilder,private _router:Router,private _loginService:Service)
   {
     this.formGroup=this._fb.group({
@@ -21,7 +21,7 @@ signUp()
 {
  if(this.formGroup.valid)
  {
-    this._loginService.postLoginDetails(this.formGroup.value).subscribe({
+    this._loginService.postsignUpDetails(this.formGroup.value).subscribe({
       next:()=>{
         this._router.navigate(['login'])
       }

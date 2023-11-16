@@ -25,9 +25,9 @@ export interface UserEditDetailsType{
   styleUrls: ['./user-form.component.scss']
 })
 export class UserAddEditComponent implements OnInit {
-  userForm!:FormGroup
-  data:UserEditDetailsType|undefined
-  Education : EducationType[]=[
+ public userForm!:FormGroup
+ public data:UserEditDetailsType|undefined
+ public Education : EducationType[]=[
     {value:'Diploma', viewValue:'Diploma'},
     {value:'Intermidate', viewValue:'Intermidate'},
     {value:'PG', viewValue:'PG'},

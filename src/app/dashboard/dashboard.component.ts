@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';;
 import { MatDialog } from '@angular/material/dialog';
-import { Service} from '../service.service';
-import { ActivatedRoute, NavigationEnd, Route, Router } from '@angular/router';
+import {  Router } from '@angular/router';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
 
 @Component({

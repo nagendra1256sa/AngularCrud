@@ -12,7 +12,7 @@ import { filter } from 'rxjs';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit{
-  dataSource!:MatTableDataSource<any>
+  public dataSource!:MatTableDataSource<any>
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!:MatSort
   displayedColumns:string[]=['id','Name','LastName','DOB','PhoneNumber','Actions']
@@ -44,7 +44,7 @@ export class UsersComponent implements OnInit{
      this._userService.getUserList().subscribe({
        next:(val)=>
        {
-         this.dataSource=new MatTableDataSource(val);
+         this.dataSource=new MatTableDataSource(val.responseData);
          this.dataSource.paginator=this.paginator;
          this.dataSource.sort=this.sort
        }

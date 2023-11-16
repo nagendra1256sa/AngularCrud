@@ -7,14 +7,31 @@ import { Service } from '../service.service';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 
+export interface DetailsTypeWithId{
+  id:number
+  Sku:string;
+  Name:string;
+  DisplayName:string;
+  BasePrice:string;
+  SellingPrice:string;
+  Description:string
+}
+
+// interface TableDataTypeCheck{
+//   id:number;
+//   Sku:string;
+//   Name:string;
+//   SellingPrice:string;
+// }
+
 @Component({
   selector: 'app-items',
   templateUrl: './items.component.html',
   styleUrls: ['./items.component.scss']
 })
 export class ItemsComponent  implements OnInit{
-  displayedColumns: string[] = ['Sku', 'Name','SellingPrice','action'];
-  dataSource!: MatTableDataSource<any>;
+  public displayedColumns: string[] = ['Sku', 'Name','SellingPrice','action'];
+  public dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -35,7 +52,7 @@ export class ItemsComponent  implements OnInit{
     this._ItemService.getItemList().subscribe({
        next:(res)=>
        {
-         this.dataSource=new MatTableDataSource(res);
+         this.dataSource=new MatTableDataSource(res.responseData);
          this.dataSource.sort=this.sort;
          this.dataSource.paginator=this.paginator
        }

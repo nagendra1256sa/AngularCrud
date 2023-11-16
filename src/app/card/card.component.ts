@@ -18,7 +18,7 @@ interface DetailsType{
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit{
-  data:DetailsType|undefined
+  public data:DetailsType|undefined
   routeSubscription: any;
     constructor(private _Activated:ActivatedRoute,private getDataById:Service,private _router:Router){}
   ngOnInit(): void {
@@ -32,7 +32,7 @@ export class CardComponent implements OnInit{
       next:(val)=>
       {
         this.data=val
-      },error:()=>
+      },error:(e)=>
       {
         alert('Not Found')
         this._router.navigate(['dashboard/items'])

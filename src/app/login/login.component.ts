@@ -14,9 +14,9 @@ interface LoginTypeCheck{
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit{
-  LoginData:any
-  loginCheck:boolean=false;
-     loginFormGroup!:FormGroup
+  public LoginData:any
+  public loginCheck:boolean=false;
+   public loginFormGroup!:FormGroup
      constructor(private _fb:FormBuilder,private _router:Router,private _loginService:Service)
      {
        this.loginFormGroup=this._fb.group({
@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit{
       // else{
       //      this.loginCheck=true
       // }
-      this._loginService.getLoginDetailsByName(this.loginFormGroup.value).subscribe({
+      this._loginService.postLoginDetails(this.loginFormGroup.value).subscribe({
         next:(res)=>
         {
           localStorage.setItem('loginCredintials',JSON.stringify(this.loginFormGroup.value))

@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component,  OnInit } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -26,8 +26,8 @@ export interface EditDetailsType{
   styleUrls: ['./edit-add.component.scss'],
 })
 export class EditAddComponent implements OnInit {
-  data: EditDetailsType|undefined;
-  empForm: FormGroup;
+  public data: EditDetailsType|undefined;
+ public empForm: FormGroup;
   constructor(
     private _fb: FormBuilder,
     private _employeSerbice: Service,
